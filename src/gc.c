@@ -507,8 +507,8 @@ static void add_lostval_parent(jl_value_t* parent)
 #define verify_parent(ty, obj, slot, args...) do {                      \
         if (*(jl_value_t**)(slot) == lostval && (obj) != lostval) {     \
             jl_printf(JL_STDOUT, "Found parent %s %p at %s:%d\n",       \
-                      ty, obj, __FILE__, __LINE__);                     \
-            jl_printf(JL_STDOUT, "\tloc %p : ", slot);                  \
+                      (void*)(ty), (void*)(obj), __FILE__, __LINE__);   \
+            jl_printf(JL_STDOUT, "\tloc %p : ", (void*)(slot));         \
             jl_printf(JL_STDOUT, args);                                 \
             jl_printf(JL_STDOUT, "\n");                                 \
             jl_printf(JL_STDOUT, "\ttype: ");                           \
